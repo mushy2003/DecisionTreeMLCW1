@@ -1,5 +1,6 @@
 import numpy as np
 
+#TODO: Maybe normalize the confusion matrix - unbalanced data set
 def confusion_matrix(y_gold, y_prediction, class_labels=None):
     if not class_labels:
         class_labels = np.unique(np.concatenate((y_gold, y_prediction)))
@@ -9,7 +10,6 @@ def confusion_matrix(y_gold, y_prediction, class_labels=None):
     for (i, label) in enumerate(class_labels):
         # get predictions where the ground truth is the current class label
         indices = (y_gold == label)
-        gold = y_gold[indices]
         predictions = y_prediction[indices]
 
         (unique_labels, counts) = np.unique(predictions, return_counts=True)
