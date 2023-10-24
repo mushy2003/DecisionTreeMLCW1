@@ -6,8 +6,10 @@ class Node:
         self.right = right
     
 
+def same_label(data):
+    return len(set(data[:, -1])) == 1
 
-# TODO: Implement same_label and find_split functions.
+# TODO: Implement find_split functions.
 def decision_tree_learning(train_data, depth):
     if same_label(train_data):
         return (Node("leaf", train_data[0, -1], None, None), depth)
