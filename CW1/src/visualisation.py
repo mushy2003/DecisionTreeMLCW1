@@ -1,5 +1,5 @@
 from data_loader import clean_data
-from decision_tree import decision_tree_learning
+from decision_tree import DecisionTree
 
 import matplotlib.pyplot as plt
 
@@ -38,8 +38,10 @@ if __name__ == "__main__":
     # Check tree visualisation with the clean data
     clean_data_train = clean_data[:int(0.8 * len(clean_data))]
 
-    (node, depth) = decision_tree_learning(clean_data_train, 0)
+    tree = DecisionTree()
 
-    plot_tree(node, 0, depth)
+    tree.train(clean_data_train)
+
+    plot_tree(tree.root, 0, tree.depth)
     plt.axis('off')
     plt.show()

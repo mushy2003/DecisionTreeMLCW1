@@ -35,6 +35,12 @@ def accuracy_from_confusion(confusion):
         return np.sum(np.diag(confusion)) / np.sum(confusion)
     else:
         return 0.
+    
+def run_test(test_data, trained_tree):
+    y_pred = np.array([])
+    for i in test_data:
+        y_pred.append(traverse(i, trained_tree))
+    return y_pred
 
 def evaluate(test_data, trained_tree):
     y_gold = np.array([])
@@ -47,9 +53,4 @@ def evaluate(test_data, trained_tree):
     return accuracy_from_confusion(confusion)
     
 
-def run_test(test_data, trained_tree):
-    y_pred = np.array([])
-    for i in test_data:
-        y_pred.append(traverse(i, trained_tree))
-    return y_pred
 
