@@ -12,6 +12,3 @@ def load_noisy_data():
 
 clean_data = load_data("wifi_db/clean_dataset.txt")
 noisy_data = load_data("wifi_db/noisy_dataset.txt")
-
-print(np.shape(clean_data))
-print(np.shape(noisy_data))

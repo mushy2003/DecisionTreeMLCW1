@@ -1,3 +1,5 @@
+import numpy as np
+
 class Node:
     def __init__(self, attribute, value, left, right):
         self.attribute = attribute
@@ -9,7 +11,47 @@ class Node:
 def same_label(data):
     return len(set(data[:, -1])) == 1
 
-# TODO: Implement find_split functions.
+def find_split(data):
+    _, num_attributes = data.shape
+    num_attributes -= 1 # Since last column is the label
+    best_info_gain = 0
+    best_split_attribute = None
+    best_split_value = None
+    left_data = None
+    right_data = None
+
+    def entropy(dataset):
+        _, counts = np.unique(dataset[:, -1], return_counts=True)
+        total = np.sum(counts)
+        p_ks = counts / total
+        entropy = -1 * np.sum(p_ks * np.log2(p_ks))
+        
+        return entropy
+
+    def information_gain(data, curr_left_data, curr_right_data):
+        remainder = (len(curr_left_data) / len(data)) * entropy(curr_left_data) + (len(curr_right_data) / len(data)) * entropy(curr_right_data)
+        return entropy(data) - remainder
+
+    for attribute in range(num_attributes):
+        sorted_values = np.sort(data[:, attribute])
+        for i in range(1, len(sorted_values)):
+            curr_split_value = (sorted_values[i-1] + sorted_values[i]) / 2
+            curr_left_data = data[data[:, attribute] <= curr_split_value]
+            curr_right_data = data[data[:, attribute] > curr_split_value]
+
+            if len(curr_left_data) == 0 or len(curr_right_data) == 0:
+                continue
+
+            curr_info_gain = information_gain(data, curr_left_data, curr_right_data)
+
+            if curr_info_gain > best_info_gain:
+                best_info_gain = curr_info_gain
+                best_split_attribute, best_split_value = attribute, curr_split_value
+                left_data, right_data = curr_left_data, curr_right_data
+    
+    return best_split_attribute, best_split_value, left_data, right_data
+
+
 def decision_tree_learning(train_data, depth):
     if same_label(train_data):
         return (Node("leaf", train_data[0, -1], None, None), depth)
@@ -21,3 +63,4 @@ def decision_tree_learning(train_data, depth):
     (new_node.right, right_depth) = decision_tree_learning(right_data, depth+1)
 
     return (new_node, max(left_depth, right_depth))
+
