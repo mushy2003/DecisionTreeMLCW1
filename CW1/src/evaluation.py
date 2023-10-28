@@ -36,4 +36,4 @@ def evaluate(test_data_with_labels, trained_tree):
 
     confusion = confusion_matrix(y_gold, y_pred, [1, 2, 3, 4])
 
-    return accuracy_from_confusion(confusion)
+    return accuracy_from_confusion(confusion), confusion
