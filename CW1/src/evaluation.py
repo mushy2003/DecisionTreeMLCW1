@@ -30,16 +30,10 @@ def accuracy_from_confusion(confusion):
         return 0
 
 def precision(confusion):
-    precision_per_class = np.zeros(4)
-    for i in range(len(confusion)):
-        precision_per_class[i] = confusion[i, i] / np.sum(confusion[:, i])
-    return precision_per_class
+    return np.diagonal(confusion) / np.sum(confusion, axis=0)
 
 def recall(confusion):
-    recall_per_class = np.zeros(4)
-    for i in range(len(confusion)):
-        recall_per_class[i] = confusion[i, i] / np.sum(confusion[i, :])
-    return recall_per_class
+    return np.diagonal(confusion) / np.sum(confusion, axis=1)
 
 def f1_score(confusion):
     precision_val = precision(confusion)
