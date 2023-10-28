@@ -10,6 +10,7 @@ def k_fold_split(num_folds, num_instances, random_generator = default_rng()):
 
 def train_test_k_fold(num_folds, num_instances, random_generator=default_rng()):
     split_indices = k_fold_split(num_folds, num_instances, random_generator)
+
     folds = []
     for k in range(num_folds):
         test_indices = split_indices[k]
@@ -34,6 +35,10 @@ def k_fold_cross_validation(shuffled_data, num_folds, num_instances, random_gene
         accuracies[i], confusion_mat = evaluation.evaluate(test_data, model)
         confusion_matrix += confusion_mat
     
-    return accuracies, confusion_matrix
+    recall = evaluation.recall(confusion_matrix)
+    precision = evaluation.precision(confusion_matrix)
+    f1_score = evaluation.f1_score(confusion_matrix)
+    
+    return accuracies, confusion_matrix, recall, precision, f1_score
 
 

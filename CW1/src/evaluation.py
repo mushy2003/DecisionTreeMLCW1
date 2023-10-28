@@ -27,7 +27,24 @@ def accuracy_from_confusion(confusion):
     if np.sum(confusion) > 0:
         return np.sum(np.diag(confusion)) / np.sum(confusion)
     else:
-        return 0.
+        return 0
+
+def precision(confusion):
+    precision_per_class = np.zeros(4)
+    for i in range(len(confusion)):
+        precision_per_class[i] = confusion[i, i] / np.sum(confusion[:, i])
+    return precision_per_class
+
+def recall(confusion):
+    recall_per_class = np.zeros(4)
+    for i in range(len(confusion)):
+        recall_per_class[i] = confusion[i, i] / np.sum(confusion[i, :])
+    return recall_per_class
+
+def f1_score(confusion):
+    precision_val = precision(confusion)
+    recall_val = recall(confusion)
+    return (2*precision_val*recall_val) / (precision_val + recall_val)
 
 def evaluate(test_data_with_labels, trained_tree):
     y_gold = test_data_with_labels[:, -1]
