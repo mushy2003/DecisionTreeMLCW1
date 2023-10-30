@@ -156,7 +156,7 @@ def plot_tree_rt(root, depth=0):
     else:
         text = "X" + str(root.attribute) + " < " + str(root.value)
 
-    plt.text(root.x_coord, depth, text, fontsize=6.5, verticalalignment='center', horizontalalignment='center', bbox=dict(boxstyle='round', facecolor='white', edgecolor='blue'))
+    plt.text(root.x_coord, depth, text, fontsize=7, verticalalignment='center', horizontalalignment='center', bbox=dict(boxstyle='round', facecolor='white', edgecolor='blue'))
 
     # Draw the lines between nodes in the tree
     points = []
