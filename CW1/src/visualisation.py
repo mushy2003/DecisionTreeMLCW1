@@ -156,7 +156,7 @@ def plot_tree_rt(root, depth=0):
     else:
         text = "X" + str(root.attribute) + " < " + str(root.value)
 
-    plt.text(root.x_coord, depth, text, fontsize=6.5, verticalalignment='center', horizontalalignment='center', bbox=dict(boxstyle='round', facecolor='white', edgecolor='blue', alpha=0.5))
+    plt.text(root.x_coord, depth, text, fontsize=6.5, verticalalignment='center', horizontalalignment='center', bbox=dict(boxstyle='round', facecolor='white', edgecolor='blue'))
 
     # Draw the lines between nodes in the tree
     points = []
@@ -177,7 +177,7 @@ def plot_tree_rt(root, depth=0):
 if __name__ == "__main__":
     # Check tree visualisation with the clean data
     clean_data = load_clean_data()
-    clean_data_train = clean_data[:int(0.8 * len(clean_data))]
+    clean_data_train = clean_data[:int(len(clean_data))]
 
     tree = DecisionTree()
 
