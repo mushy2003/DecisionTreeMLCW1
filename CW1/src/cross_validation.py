@@ -22,6 +22,8 @@ def train_test_k_fold(num_folds, num_instances, random_generator=default_rng()):
 def k_fold_cross_validation(shuffled_data, num_folds, num_instances, random_generator=default_rng()):
     folds = train_test_k_fold(num_folds, num_instances, random_generator)
     accuracies = np.zeros((num_folds, ))
+    recalls_per_fold = np.zeros((num_folds, 4))
+    precisions_per_fold = np.zeros((num_folds, 4))
     confusion_matrix = np.zeros((4, 4))
 
     for (i, (train_indices, test_indices)) in enumerate(folds):
@@ -33,12 +35,14 @@ def k_fold_cross_validation(shuffled_data, num_folds, num_instances, random_gene
         model.train(train_data)
 
         accuracies[i], confusion_mat = evaluation.evaluate(test_data, model)
+        recalls_per_fold[i] = evaluation.recall(confusion_mat)
+        precisions_per_fold[i] = evaluation.precision(confusion_mat)
         confusion_matrix += confusion_mat
     
     recall = evaluation.recall(confusion_matrix)
     precision = evaluation.precision(confusion_matrix)
     f1_score = evaluation.f1_score(confusion_matrix)
     
-    return accuracies, confusion_matrix, recall, precision, f1_score
+    return accuracies, recalls_per_fold, precisions_per_fold, confusion_matrix, recall, precision, f1_score
 
 
