@@ -1,4 +1,4 @@
-from data_loader import load_clean_data
+from data_loader import load_clean_data, load_noisy_data
 from decision_tree import DecisionTree, Node
 
 import matplotlib.pyplot as plt
@@ -99,7 +99,7 @@ def fix_overlaps(root, minimum_separation):
         calculate_contour(sibling, 0, sibling_contour, left=False)
 
         for depth in range(root.depth + 1, min(max(sibling_contour.keys()), max(contour.keys())) + 1):
-        # At each depth of the contours, check if there is an overlap, and adjust shift
+            # At each depth of the contours, check if there is an overlap, and adjust shift
             # Subtrees overlap if the separation between the contours is less than the
             # minimum separation
             separation = contour[depth] - sibling_contour[depth]
@@ -156,7 +156,7 @@ def plot_tree_rt(root, depth=0):
     else:
         text = "X" + str(root.attribute) + " < " + str(root.value)
 
-    plt.text(root.x_coord, depth, text, fontsize=7, verticalalignment='center', horizontalalignment='center', bbox=dict(boxstyle='round', facecolor='white', edgecolor='blue'))
+    plt.text(root.x_coord, depth, text, fontsize=6, verticalalignment='center', horizontalalignment='center', bbox=dict(boxstyle='round', facecolor='white', edgecolor='blue'))
 
     # Draw the lines between nodes in the tree
     points = []
