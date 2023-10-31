@@ -1,6 +1,5 @@
 import numpy as np
 
-#TODO: Maybe normalize the confusion matrix - unbalanced data set
 def confusion_matrix(y_gold, y_prediction, class_labels=None):
     if not class_labels:
         class_labels = np.unique(np.concatenate((y_gold, y_prediction)))
@@ -23,6 +22,7 @@ def confusion_matrix(y_gold, y_prediction, class_labels=None):
 
     return confusion
 
+# Calculates accuracy from the confusion matrix
 def accuracy_from_confusion(confusion):
     if np.sum(confusion) > 0:
         return np.sum(np.diag(confusion)) / np.sum(confusion)

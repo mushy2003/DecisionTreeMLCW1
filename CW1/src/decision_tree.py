@@ -12,9 +12,15 @@ class DecisionTree:
         self.root = None
         self.depth = 0
     
+    """
+    Trains/Creates the decision tree using the training data. Internally uses the _decision_tree_learning method.
+    """
     def train(self, train_data):
         (self.root, self.depth) = self._decision_tree_learning(train_data, 0)
     
+    """
+    Returns the predictions of the decision tree given test data.
+    """
     def predict(self, test_data):
         # Note test data will have one less column than training data since it won't have labels
         y_preds = np.zeros(len(test_data))
@@ -30,6 +36,10 @@ class DecisionTree:
         
         return y_preds
 
+    """
+    Tries to find the best split in the training data, the split that leads to the highest information gain is considered the best split.
+    Returns the best split attribute, value and the data remaining on either side of the split.
+    """
     def _find_split(self, data):
         _, num_attributes = data.shape
         num_attributes -= 1 # Since last column is the label
@@ -51,6 +61,8 @@ class DecisionTree:
             remainder = (len(curr_left_data) / len(data)) * entropy(curr_left_data) + (len(curr_right_data) / len(data)) * entropy(curr_right_data)
             return entropy(data) - remainder
 
+        # Iterates through each attribute, setting the split value as a midpoint between attribute values. 
+        # Selects the attribute and corresponding split value that leads to the highest information gain. 
         for attribute in range(num_attributes):
             sorted_values = np.sort(data[:, attribute])
             for i in range(1, len(sorted_values)):
@@ -71,6 +83,9 @@ class DecisionTree:
         return best_split_attribute, best_split_value, left_data, right_data
 
 
+    """
+    Responsible for creating the decision tree itself given the training data.
+    """
     def _decision_tree_learning(self, train_data, depth):
         
         def same_label(data):
@@ -86,5 +101,3 @@ class DecisionTree:
         (new_node.right, right_depth) = self._decision_tree_learning(right_data, depth+1)
 
         return (new_node, max(left_depth, right_depth))
-
-
