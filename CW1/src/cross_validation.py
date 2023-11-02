@@ -48,7 +48,14 @@ def k_fold_cross_validation(shuffled_data, num_folds, num_instances, random_gene
     recall = evaluation.recall(confusion_matrix)
     precision = evaluation.precision(confusion_matrix)
     f1_score = evaluation.f1_score(confusion_matrix)
+
+    normalised_confusion = evaluation.normalised_confusion_matrix(confusion_matrix)
+    normalised_accuracy = evaluation.accuracy_from_confusion(normalised_confusion)
+    normalised_recall = evaluation.recall(normalised_confusion)
+    normalised_precision = evaluation.precision(normalised_confusion)
+    normalised_f1_score = evaluation.f1_score(normalised_confusion)
     
-    return accuracies, recalls_per_fold, precisions_per_fold, confusion_matrix, recall, precision, f1_score
+    return (accuracies, recalls_per_fold, precisions_per_fold, confusion_matrix, recall, precision, f1_score, 
+            normalised_confusion, normalised_accuracy, normalised_recall, normalised_precision, normalised_f1_score)
 
 

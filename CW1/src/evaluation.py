@@ -22,6 +22,14 @@ def confusion_matrix(y_gold, y_prediction, class_labels=None):
 
     return confusion
 
+def normalised_confusion_matrix(confusion):
+    confusion = np.copy(confusion)
+    sum_of_actual_classes = np.sum(confusion, axis=1)
+    for class_num in range(len(sum_of_actual_classes)):
+        confusion[:, class_num] /= sum_of_actual_classes
+    
+    return confusion
+
 # Calculates accuracy from the confusion matrix
 def accuracy_from_confusion(confusion):
     if np.sum(confusion) > 0:
