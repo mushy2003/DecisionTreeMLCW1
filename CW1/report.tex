@@ -2,7 +2,7 @@
 \usepackage[british]{babel}
 \usepackage{graphicx}
 \documentclass[a4paper, 11pt]{article}
-\usepackage[top=3cm, bottom=3cm, left = 3cm, right = 3cm]{geometry} 
+\usepackage[top=3cm, bottom=3cm, left = 2cm, right = 2cm]{geometry} 
 \geometry{a4paper} 
 \usepackage[utf8]{inputenc}
 \usepackage[skip=2pt]{caption}
@@ -22,11 +22,9 @@
   \caption{Decision tree}
   \raisebox{0.0\height}{\includegraphics[width=14.2540994359176cm,height=6.58685884822248cm]{report-1.pdf}}
 \end{figure}
-\pagebreak 
+\\
 
-\begin{center}
-Clean data set:
-\end{center}
+\section{Clean data set}
   \\
 
 \renewcommand{\arraystretch}{2}
@@ -42,36 +40,36 @@ Clean data set:
   Room 4 actual & 5                & 0                & 1                & 494              \\ \hline
   \end{tabular}
 \end{table}
-
-
-Accuracy: 0.9685 \\
 \\
-Recall: \\
+
+\textbf{Accuracy:} 0.9685 \\
+\\
+\textbf{Recall:} \\
 Room 1: 0.98867706 \\
 Room 2: 0.95791808 \\
 Room 3: 0.94327441 \\
 Room 4: 0.98443314 \\
 \\
-Precision: \\
+\\
+\textbf{Precision:} \\
 Room 1: 0.98034611 \\
 Room 2: 0.95797757 \\
 Room 3: 0.9460876 \\
 Room 4: 0.98566303 \\
 \\
-F1-measures: \\
+\textbf{F1-measures:} \\
 Room 1: 0.98406375 \\
 Room 2: 0.958  \\
 Room 3: 0.9448345 \\
 Room 4: 0.98698699 \\
-\pagebreak 
+\\
 
-\begin{center}
-Noisy data set:
-\end{center}
+\section{Noisy data set}
   \\
 
 \renewcommand{\arraystretch}{2}  
 \begin{table}[htb]
+  \centering
   \caption{Confusion matrix for noisy dataset} \\
   \begin{tabular}{|l|l|l|l|l|}
   \hline
@@ -82,23 +80,23 @@ Noisy data set:
   Room 4 actual & 47               & 30               & 37               & 384              \\ \hline
   \end{tabular}
 \end{table}
-
-
-Accuracy: 0.7855000000000001 \\
 \\
-Recall: \\
+
+\textbf{Accuracy:} 0.7855000000000001 \\
+\\
+\textbf{Recall:} \\
 Room 1: 0.77275535 \\
 Room 2: 0.80197697 \\
 Room 3: 0.79740095 \\
 Room 4: 0.77106065 \\
 \\
-Precision: \\
+\textbf{Precision:} \\
 Room 1: 0.78238612 \\
 Room 2: 0.77477728 \\
 Room 3: 0.79695117 \\
 Room 4: 0.78396774 \\
 \\
-F1-measures: \\
+\textbf{F1-measures:} \\
 Room 1: 0.7774359 \\
 Room 2: 0.78733927  \\
 Room 3: 0.79766537 \\
@@ -106,6 +104,7 @@ Room 4: 0.77890467 \\
 
 \pagebreak
 
+\section{Analysis}
 
 When using the clean data, the vast majority of the rooms are identified
 correctly. We see from the confusion matrix that the rooms which were most
