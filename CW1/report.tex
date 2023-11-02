@@ -1,6 +1,7 @@
 \documentclass[a4paper, 11pt]{article}
 \usepackage[british]{babel}
 \usepackage{graphicx}
+\usepackage{amsmath}
 \usepackage[top=3cm, bottom=3cm, left = 2cm, right = 2cm]{geometry} 
 \geometry{a4paper} 
 \usepackage[utf8]{inputenc}
@@ -31,6 +32,18 @@ The following is the Decision Tree that was formed as a result of doing 10-fold 
 
 \pagebreak
 \section{Evaluation Metrics}
+
+    \[ \ensuremath{\operatorname{Accuracy}} = \frac{\mathit{TP} +
+   \mathit{TN}}{\mathit{TP} + \mathit{TN} +
+   \mathit{FP} + \mathit{FN}} \]
+
+   \[ \ensuremath{\operatorname{Recall}} = \frac{\mathit{TP}}{\mathit{TP} +
+   \mathit{FN}} \]
+
+   \[ \ensuremath{\operatorname{Precision}} = \frac{\mathit{TP}}{\mathit{TP} +
+   \mathit{FP}} \]
+
+   \[ F_1 = \frac{2 \cdot \mathit{precision} \cdot \mathit{recall}}{\mathit{precision} + \mathit{recall}} \]
 
     \subsection{Clean data set}
     \renewcommand{\arraystretch}{2}
