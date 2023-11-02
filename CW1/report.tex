@@ -95,4 +95,24 @@ Room 2: 0.78733927  \\
 Room 3: 0.79766537 \\
 Room 4: 0.77890467 \\
 
+\pagebreak
+
+
+When using the clean data, the vast majority of the rooms are identified
+correctly. We see from the confusion matrix that the rooms which were most
+often confused with eachother are Room 2 and Room 3. With the noisy data,
+while most rooms are still correctly recognised, there is a significant
+amount of incorrect classifications. Most notably: Room 1 often gets misclassified as
+Room 2, Room 4 as Room 1, and Room 2 as Room 3.
+\
+
+The performance on the noisy dataset is significantly worse than on the clean
+dataset, which we can see by comparing the evaluation metrics above. This
+could be caused by the decision tree overfitting when training on the noisy
+data, effectively ``learning the noise'', which leads to worse generalisation.
+Furthermore, the noisy dataset is slightly unbalanced, as Room 3 has 515
+samples, whereas Room 1 only has 490, so it is necessary to look at the
+normalized confusion matrix.
+
+
 \end{document}
