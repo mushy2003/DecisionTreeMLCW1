@@ -1,7 +1,6 @@
-\documentclass{article}
+\documentclass[a4paper, 11pt]{article}
 \usepackage[british]{babel}
 \usepackage{graphicx}
-\documentclass[a4paper, 11pt]{article}
 \usepackage[top=3cm, bottom=3cm, left = 2cm, right = 2cm]{geometry} 
 \geometry{a4paper} 
 \usepackage[utf8]{inputenc}
@@ -9,99 +8,100 @@
 
 \begin{document}
 
-\title{Report}
+\title{Intro to Machine Learning Coursework 1 Report - Decision Trees}
 
 \author{Musawer Hussain, Vladimir Volgin, Oleg Tretieu}
 
 \maketitle
 
-\
+\section{Introduction}
+This is the final report of the first Introduction to Machine Learning coursework where we have implemented a decision tree algorithm and use it to determine one of the indoor locations based on WIFI signal strengths collected from a mobile phone. We were given two datasets, a clean dataset and noisy dataset and we have trained decision trees on each of them separately.
+\\ \\
+In this report we will first show the output of one of our decision trees formed, followed by listing out the evaluation metrics we have calculated for decision trees trained on both clean and noisy datasets before finally providing a short analysis of both the results and the difference in the two datasets.
+
+\section{Image of the Decision Tree Formed}
+
+The following is the Decision Tree that was formed as a result of doing 10-fold cross validation on the clean-dataset. This is the output of the visualisation function.
 
 \begin{figure}[h]
   \centering
-  \caption{Decision tree}
   \raisebox{0.0\height}{\includegraphics[width=14.2540994359176cm,height=6.58685884822248cm]{report-1.pdf}}
+  \caption{Output of the decision tree visualisation function on the clean dataset.}
 \end{figure}
-\\
 
-\section{Clean data set}
-  \\
+\pagebreak
+\section{Evaluation Metrics}
 
-\renewcommand{\arraystretch}{2}
-\begin{table}[htb]
-  \centering
-  \caption{Confusion matrix for clean dataset} \\
-  \begin{tabular}{|l|l|l|l|l|}
-  \hline
-                & Room 1 predicted & Room 2 predicted & Room 3 predicted & Room 4 predicted \\ \hline
-  Room 1 actual & 495              & 0                & 2                & 3                \\ \hline
-  Room 2 actual & 0                & 478              & 22               & 0                \\ \hline
-  Room 3 actual & 2                & 18               & 478              & 2                \\ \hline
-  Room 4 actual & 5                & 0                & 1                & 494              \\ \hline
-  \end{tabular}
-\end{table}
-\\
+    \subsection{Clean data set}
+    \renewcommand{\arraystretch}{2}
+    \begin{table}[htb]
+      \centering
+      \caption{Confusion matrix for clean dataset} \
+      \begin{tabular}{|l|l|l|l|l|}
+      \hline
+                    & Room 1 predicted & Room 2 predicted & Room 3 predicted & Room 4 predicted \\ \hline
+      Room 1 actual & 496              & 0                & 2                & 2                \\ \hline
+      Room 2 actual & 0                & 478              & 22               & 0                \\ \hline
+      Room 3 actual & 1                & 18               & 479              & 2                \\ \hline
+      Room 4 actual & 3                & 0                & 0                & 497              \\ \hline
+      \end{tabular}
+    \end{table}
+    \textbf{%
+    \begin{tabular}{l l}
+        Average Accuracy: & 0.975 \\
+        Recall: & \\
+        & Room 1: 0.992 \\
+        & Room 2: 0.956 \\
+        & Room 3: 0.958 \\
+        & Room 4:  0.994 \\
+        Precision: & \\
+        & Room 1: 0.992 \\
+        & Room 2: 0.964 \\
+        & Room 3: 0.952 \\
+        & Room 4:  0.992 \\
+        F1-measures: & \\
+        & Room 1: 0.992 \\
+        & Room 2: 0.960 \\
+        & Room 3: 0.955 \\
+        & Room 4: 0.993 \\
+    \end{tabular}%
+    }
 
-\textbf{Accuracy:} 0.9685 \\
-\\
-\textbf{Recall:} \\
-Room 1: 0.98867706 \\
-Room 2: 0.95791808 \\
-Room 3: 0.94327441 \\
-Room 4: 0.98443314 \\
-\\
-\\
-\textbf{Precision:} \\
-Room 1: 0.98034611 \\
-Room 2: 0.95797757 \\
-Room 3: 0.9460876 \\
-Room 4: 0.98566303 \\
-\\
-\textbf{F1-measures:} \\
-Room 1: 0.98406375 \\
-Room 2: 0.958  \\
-Room 3: 0.9448345 \\
-Room 4: 0.98698699 \\
-\\
-
-\section{Noisy data set}
-  \\
-
-\renewcommand{\arraystretch}{2}  
-\begin{table}[htb]
-  \centering
-  \caption{Confusion matrix for noisy dataset} \\
-  \begin{tabular}{|l|l|l|l|l|}
-  \hline
-                & Room 1 predicted & Room 2 predicted & Room 3 predicted & Room 4 predicted \\ \hline
-  Room 1 actual & 379              & 49               & 19               & 43               \\ \hline
-  Room 2 actual & 29               & 398              & 47               & 23               \\ \hline
-  Room 3 actual & 30               & 37               & 410              & 38               \\ \hline
-  Room 4 actual & 47               & 30               & 37               & 384              \\ \hline
-  \end{tabular}
-\end{table}
-\\
-
-\textbf{Accuracy:} 0.7855000000000001 \\
-\\
-\textbf{Recall:} \\
-Room 1: 0.77275535 \\
-Room 2: 0.80197697 \\
-Room 3: 0.79740095 \\
-Room 4: 0.77106065 \\
-\\
-\textbf{Precision:} \\
-Room 1: 0.78238612 \\
-Room 2: 0.77477728 \\
-Room 3: 0.79695117 \\
-Room 4: 0.78396774 \\
-\\
-\textbf{F1-measures:} \\
-Room 1: 0.7774359 \\
-Room 2: 0.78733927  \\
-Room 3: 0.79766537 \\
-Room 4: 0.77890467 \\
-
+    
+    \subsection{Noisy data set}
+    \renewcommand{\arraystretch}{2}  
+    \begin{table}[htb]
+      \centering
+      \caption{Confusion matrix for noisy dataset}
+      \begin{tabular}{|l|l|l|l|l|}
+      \hline
+                    & Room 1 predicted & Room 2 predicted & Room 3 predicted & Room 4 predicted \\ \hline
+      Room 1 actual & 379              & 49               & 19               & 43               \\ \hline
+      Room 2 actual & 29               & 398              & 47               & 23               \\ \hline
+      Room 3 actual & 30               & 37               & 410              & 38               \\ \hline
+      Room 4 actual & 47               & 30               & 37               & 384              \\ \hline
+      \end{tabular}
+    \end{table}
+    \textbf{Accuracy:} 0.7855000000000001 \\
+    \\
+    \textbf{Recall:} \\
+    Room 1: 0.77275535 \\
+    Room 2: 0.80197697 \\
+    Room 3: 0.79740095 \\
+    Room 4: 0.77106065 \\
+    \\
+    \textbf{Precision:} \\
+    Room 1: 0.78238612 \\
+    Room 2: 0.77477728 \\
+    Room 3: 0.79695117 \\
+    Room 4: 0.78396774 \\
+    \\
+    \textbf{F1-measures:} \\
+    Room 1: 0.7774359 \\
+    Room 2: 0.78733927  \\
+    Room 3: 0.79766537 \\
+    Room 4: 0.77890467 \\
+    
 \pagebreak
 
 \section{Analysis}
@@ -124,3 +124,4 @@ normalized confusion matrix.
 
 
 \end{document}
+
